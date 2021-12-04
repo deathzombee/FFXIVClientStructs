@@ -14,7 +14,7 @@ namespace FFXIVClientStructs.FFXIV.Client.Game.Character
     public unsafe partial struct Character
     {
         [FieldOffset(0x0)] public GameObject GameObject;
-        
+
         [FieldOffset(0x1C4)] public uint Health;
         [FieldOffset(0x1C8)] public uint MaxHealth;
         [FieldOffset(0x1CC)] public uint Mana;
@@ -29,26 +29,26 @@ namespace FFXIVClientStructs.FFXIV.Client.Game.Character
 
         [FieldOffset(0x230)] public uint PlayerTargetObjectID;
 
-        [FieldOffset(0x1040)] public fixed byte EquipSlotData[4 * 10];
+        [FieldOffset(0x1040)] public fixed byte EquipSlotData[4 * 10];          // ???
         //[FieldOffset(0x17B0)] public void* VfxObject;
         //[FieldOffset(0x17B8)] public void* VfxObject2;
-        [FieldOffset(0x17E0)] public void* Omen;
+        [FieldOffset(0x17E0)] public void* Omen;                                // ???
 
-        [FieldOffset(0x1878)] public Companion* CompanionObject; // minion
-        [FieldOffset(0xDD8)] public fixed byte CustomizeData[0x1A];
+        [FieldOffset(0x1900)] public Companion* CompanionObject; // minion      // 1878
+        [FieldOffset(0xDD8)] public fixed byte CustomizeData[0x1A];             // 1898
 
-        [FieldOffset(0x18B2)] public fixed byte FreeCompanyTag[6];
+        [FieldOffset(0x1918)] public fixed byte FreeCompanyTag[6];              // 18B2
 
-        [FieldOffset(0x18D8)] public uint TargetObjectID;
+        [FieldOffset(0x18D8)] public uint TargetObjectID;                       // ???
 
-        [FieldOffset(0x1940)] public uint NameID;
+        [FieldOffset(0x1940)] public uint NameID;                               // ???
 
         [FieldOffset(0x19A8)] public uint CompanionOwnerID;
-        [FieldOffset(0x195C)] public ushort CurrentWorld;
-        [FieldOffset(0x195E)] public ushort HomeWorld;
-        [FieldOffset(0x197F)] public byte Icon;
-        [FieldOffset(0x1997)] public byte ShieldValue;
-        [FieldOffset(0x19A0)] public byte StatusFlags;
+        [FieldOffset(0x19B4)] public ushort CurrentWorld;                       // 195C
+        [FieldOffset(0x19B6)] public ushort HomeWorld;                          // 19B6
+        [FieldOffset(0x197F)] public byte Icon;                                 // ???
+        [FieldOffset(0x1997)] public byte ShieldValue;                          // ???
+        [FieldOffset(0x19A0)] public byte StatusFlags;                          // ???
 
         [MemberFunction("E8 ?? ?? ?? ?? 3B C7 74 45")]
         public partial uint GetTargetId();
