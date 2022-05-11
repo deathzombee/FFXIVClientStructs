@@ -5,13 +5,13 @@ namespace FFXIVClientStructs.FFXIV.Client.UI.Misc;
 // Client::UI::Misc::ConfigModule
 // ctor E8 ?? ?? ?? ?? 48 8B 97 ?? ?? ?? ?? 48 8D 8F ?? ?? ?? ?? 4C 8B CF
 
-[StructLayout(LayoutKind.Explicit, Size = 0xD8A8)]
+[StructLayout(LayoutKind.Explicit, Size = 0xD948)]
 public unsafe partial struct ConfigModule
 {
-    public const int ConfigOptionCount = 681;
+    public const int ConfigOptionCount = 683;
     [FieldOffset(0x28)] public UIModule* UIModule;
     [FieldOffset(0x2C8)] private fixed byte options[Option.Size * ConfigOptionCount];
-    [FieldOffset(0x57F8)] private fixed byte values[0x10 * ConfigOptionCount];
+    [FieldOffset(0x5838)] private fixed byte values[0x10 * ConfigOptionCount];
 
     public static ConfigModule* Instance()
     {
@@ -123,16 +123,17 @@ public enum ConfigOption : short
 {
     Invalid = -1,
     None = 0,
-    CustomResolutionWidth = 17,
-    CustomResolutionHeight = 18,
-    ScreenMode = 19,
-    GamepadMode = 89,
-    LegacyMovement = 304,
-    DisplayItemHelp = 716,
-    DisplayActionHelp = 721,
-    OwnDisplayNameSettings = 443,
-    PartyDisplayNameSettings = 456,
-    AllianceDisplayNameSettings = 465,
-    OtherPCsDisplayNameSettings = 472,
-    FriendsDisplayNameSettings = 517
+    CustomResolutionWidth = 18,
+    CustomResolutionHeight = 19,
+    ScreenMode = 20,
+    GamepadMode = 90,
+    LegacyMovement = 307,
+    DisplayItemHelp = 719,
+    DisplayActionHelp = 724,
+    OwnDisplayNameSettings = 446,
+    PartyDisplayNameSettings = 459,
+    AllianceDisplayNameSettings = 468,
+    OtherPCsDisplayNameSettings = 475,
+    FriendsDisplayNameSettings = 520,
+    DisplayNameSize = 546,
 }

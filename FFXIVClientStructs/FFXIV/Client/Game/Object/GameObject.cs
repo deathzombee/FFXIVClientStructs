@@ -14,6 +14,16 @@ public struct GameObjectID
 {
     [FieldOffset(0x0)] public uint ObjectID;
     [FieldOffset(0x4)] public byte Type;
+
+    public static unsafe implicit operator long(GameObjectID id) {
+        var objid = stackalloc GameObjectID[] {id};
+        return *(long*)objid;
+    }
+
+    public static unsafe implicit operator GameObjectID(long id) {
+        var objid = stackalloc long[] {id};
+        return *(GameObjectID*)objid;
+    }
 }
 
 // Client::Game::Object::GameObject
@@ -46,34 +56,34 @@ public unsafe partial struct GameObject
     [FieldOffset(0x104)] public int RenderFlags;
     [FieldOffset(0x148)] public LuaActor* LuaActor;
 
-    [VirtualFunction(2)]
+    [VirtualFunction(1)]
     public partial GameObjectID GetObjectID();
 
-    [VirtualFunction(3)]
+    [VirtualFunction(2)]
     public partial byte GetObjectKind();
 
-    [VirtualFunction(5)]
+    [VirtualFunction(4)]
     public partial bool GetIsTargetable();
 
-    [VirtualFunction(7)]
+    [VirtualFunction(6)]
     public partial byte* GetName();
 
-    [VirtualFunction(8)]
+    [VirtualFunction(7)]
     public partial float GetRadius();
 
-    [VirtualFunction(9)]
+    [VirtualFunction(8)]
     public partial float GetHeight();
 
-    [VirtualFunction(28)]
+    [VirtualFunction(27)]
     public partial DrawObject* GetDrawObject();
 
-    [VirtualFunction(49)]
+    [VirtualFunction(48)]
     public partial uint GetNpcID();
 
-    [VirtualFunction(58)]
+    [VirtualFunction(57)]
     public partial bool IsDead();
 
-    [VirtualFunction(62)]
+    [VirtualFunction(61)]
     public partial bool IsCharacter();
 }
 

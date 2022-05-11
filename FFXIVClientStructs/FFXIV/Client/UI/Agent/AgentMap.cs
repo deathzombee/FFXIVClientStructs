@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Numerics;
+using FFXIVClientStructs.FFXIV.Client.System.Framework;
 using FFXIVClientStructs.FFXIV.Client.System.String;
 using FFXIVClientStructs.FFXIV.Component.GUI;
 
@@ -8,7 +9,8 @@ namespace FFXIVClientStructs.FFXIV.Client.UI.Agent;
 // Client::UI::Agent::AgentMap
 //   Client::UI::Agent::AgentInterface
 //     Component::GUI::AtkModuleInterface::AtkEventInterface
-[StructLayout(LayoutKind.Explicit, Size = 0x5D60)]
+[Agent(AgentId.Map)]
+[StructLayout(LayoutKind.Explicit, Size = 0x5D68)]
 public unsafe partial struct AgentMap
 {
     [FieldOffset(0x0)] public AgentInterface AgentInterface;
@@ -24,7 +26,7 @@ public unsafe partial struct AgentMap
     [FieldOffset(0x37B8)] public FlagMapMarker FlagMapMarker;
 
     [FieldOffset(0x3800)] public fixed byte UnkArray1[0x38 * 12]; // 12 * MapMarkerBase
-    [FieldOffset(0x3AA0)] public fixed byte UnkArray2[0xA8 * 12];
+    [FieldOffset(0x3AA0)] public fixed byte UnkArray2[0xA8 * 6];
     [FieldOffset(0x3E90)] public fixed byte MiniMapMarkerArray[0x40 * 100]; // 100 * MiniMapMarker
 
     [FieldOffset(0x5838)] public float SelectedMapSizeFactorFloat;
@@ -38,18 +40,22 @@ public unsafe partial struct AgentMap
 
     [FieldOffset(0x58E0)] public uint CurrentTerritoryId;
     [FieldOffset(0x58E4)] public uint CurrentMapId;
-    [FieldOffset(0x58E8)] public uint CurrentMapMarkerRange;
-    [FieldOffset(0x58EC)] public uint CurrentMapDiscoveryFlag;
+    [FieldOffset(0x58EC)] public uint CurrentMapMarkerRange;
+    [FieldOffset(0x58F0)] public uint CurrentMapDiscoveryFlag;
 
-    [FieldOffset(0x58F0)] public uint SelectedTerritoryId;
-    [FieldOffset(0x58F4)] public uint SelectedMapId;
-    [FieldOffset(0x58F8)] public uint SelectedMapMarkerRange;
-    [FieldOffset(0x58FC)] public uint SelectedMapDiscoveryFlag;
+    [FieldOffset(0x58F4)] public uint SelectedTerritoryId;
+    [FieldOffset(0x58F8)] public uint SelectedMapId;
+    [FieldOffset(0x58FC)] public uint SelectedMapMarkerRange;
+    [FieldOffset(0x5900)] public uint SelectedMapDiscoveryFlag;
+    [FieldOffset(0x5904)] public uint SelectedMapSub;
 
-    [FieldOffset(0x59AD)] public byte TempMapMarkerCount;
-    [FieldOffset(0x59AF)] public byte IsFlagMarkerSet;
-    [FieldOffset(0x59B9)] public byte IsPlayerMoving;
-    [FieldOffset(0x59C1)] public byte IsControlKeyPressed;
+    [FieldOffset(0x59B0)] public byte MapMarkerCount;
+    [FieldOffset(0x59B1)] public byte TempMapMarkerCount;
+    [FieldOffset(0x59B3)] public byte IsFlagMarkerSet;
+    [FieldOffset(0x59BD)] public byte IsPlayerMoving;
+    [FieldOffset(0x59C5)] public byte IsControlKeyPressed;
+
+    public static AgentMap* Instance() => Framework.Instance()->GetUiModule()->GetAgentModule()->GetAgentMap();
 
     [MemberFunction("E8 ?? ?? ?? ?? 48 8D 4C 24 ?? E8 ?? ?? ?? ?? 33 ED 48 8D 15")]
     public partial void SetFlagMapMarker(uint territoryId, uint mapId, float mapX, float mapY, uint iconId = 0xEC91);
